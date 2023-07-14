@@ -1,6 +1,3 @@
-# Live Demo : https://country-api-react-app.netlify.app/
-GitHub User Content: https://user-images.githubusercontent.com/85820227/231487782-eb60fb21-32ae-4012-9190-7c42be3d18e8.png
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
