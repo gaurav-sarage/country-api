@@ -12,7 +12,6 @@ const CountryDetail = () => {
           <img src="#" alt="name" className="country-detail-image" />
 
           <div className="country-detail-right">
-            <h1></h1>
             <div className="details">
               <div className="detail-left">
                 <p>
