@@ -10,7 +10,7 @@ export const showAllCountries = createAsyncThunk('countries/showAll', async(_, t
         return response.data;
 
     } catch(err) {
-        const message = (err.response && err.response.data || err.message);
+        const message = (err.response && err.response.data && err.message);
 
         // reject with value sends an error msg as a payload
         return thunkAPI.rejectWithValue(message);
