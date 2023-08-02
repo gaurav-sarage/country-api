@@ -2,9 +2,9 @@ import "./country.css";
 import { useState, useEffect } from "react";
 
 // Redux
-import { UseSelector, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { showAllCountries } from "../../features/countries/countriesAction";
-import { reset } from '../../features/countries/countriesSlice';
+
 
 const Country = () => {
   const [countriesData, loading, success, error] = useSelector((state) => state.country);
@@ -24,7 +24,7 @@ const Country = () => {
     if(error) {
       console.log(error);
     }
-  }, [dispatch, error, success])
+  }, [dispatch, error, success, countriesData])
 
   return (
     <section className="country-container">
@@ -32,7 +32,7 @@ const Country = () => {
         countryData.length > 0 && countryData.map((item, index) => {
           return (
             <div className="country-card" key="">
-              <img src="#" alt="" className="country-image" />
+              <img src={item.flags.png} alt={item.flags.alt} className="country-image" />
                 <div className="country-content">
                   <h3> </h3>
                   <p>
