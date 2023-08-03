@@ -18,6 +18,8 @@ export const showAllCountries = createAsyncThunk('countries/showAll', async(_, t
 });
 
 
+
+
 export const searchByCode = createAsyncThunk(
     "countries/searchByCode",
     async (code, thunkAPI) => {
@@ -35,6 +37,3 @@ export const searchByCode = createAsyncThunk(
       }
     }
   );
-
-
-  
