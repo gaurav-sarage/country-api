@@ -10,9 +10,31 @@ export const showAllCountries = createAsyncThunk('countries/showAll', async(_, t
         return response.data;
 
     } catch(err) {
-        const message = (err.response && err.response.data && err.message);
+        const message = (err.response && err.response.data) || err.message;
 
         // reject with value sends an error msg as a payload
         return thunkAPI.rejectWithValue(message);
     }
-})
+});
+
+
+export const searchByCode = createAsyncThunk(
+    "countries/searchByCode",
+    async (code, thunkAPI) => {
+      try {
+        const response = await axios.get(
+          `https://restcountries.com/v3.1/alpha/${code}`
+        );
+  
+        return response.data;
+      } catch (err) {
+        const message = (err.response && err.response.data) || err.message;
+  
+        // rejectWithValue sends the error message as a payload
+        return thunkAPI.rejectWithValue(message);
+      }
+    }
+  );
+
+
+  
