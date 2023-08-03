@@ -1,57 +1,43 @@
-import "./country.css";
-import { useState, useEffect } from "react";
+import './country.css';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 // Redux
-import { useDispatch, useSelector } from "react-redux";
-import { showAllCountries } from "../../features/countries/countriesAction";
-
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  searchByRegion,
+  showAllCountries
+} from '../../features/countries/countriesAction';
+import { reset } from '../../features/countries/countriesSlice';
 
 const Country = () => {
-  const [countriesData, loading, success, error] = useSelector((state) => state.country);
-
+  const { countriesData, loading, success, error, region, searchTerm } = useSelector((state) => state.country);
   const dispatch = useDispatch();
 
-  const [countryData, setCountryData] = useState([]);
-
   useEffect(() => {
-    dispatch(showAllCountries);
+    dispatch(showAllCountrie());
 
-    if(success) {
-      setCountryData(countriesData);
+    if(region) {
+      dispatch(searchByRegion(region));
     }
-
 
     if(error) {
       console.log(error);
     }
-  }, [dispatch, error, success, countriesData])
+  }, [dispatch, error, success, region]);
+
+  const data = countriesData.filter((item) => item.name.common.toLowerCase().includes(searchTerm));
 
   return (
-    <section className="country-container">
-      {loading ? (<h1>Loading...</h1>) : (
-        countryData.length > 0 && countryData.map((item, index) => {
-          return (
-            <div className="country-card" key="">
-              <img src={item.flags.png} alt={item.flags.alt} className="country-image" />
-                <div className="country-content">
-                  <h3> </h3>
-                  <p>
-                    Population: <span></span>
-                  </p>
-                  <p>
-                    Region: <span></span>
-                  </p>
-                  <p>
-                    Capital: <span></span>
-                  </p>
-                </div>
-            </div>
-          )
-        }) 
+    <section className='country-container'>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        data.length > 0 &&
+        data.map((item, index) => {
+          
+        })
       )}
-      
     </section>
-  );
-};
-
-export default Country;
+  )
+}
