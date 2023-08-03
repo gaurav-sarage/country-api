@@ -1,21 +1,30 @@
 import "./filter.css";
+import { useState, useEffect } from 'react';
+
+// Redux
+import { useDispatch } from "react-redux";
+import { reset, setRegion } from '../../../features/countries/countriesSlice';
 
 const Filter = () => {
-  return (
-    <section className="filter-container">
-      <div className="filter">
-        <input
-          type="text"
-          readOnly
-          placeholder="Filter by Region"
-          value=""
-          className="filter-input"
-        />
+  const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
+  const [filter, setFilter] = useState('');
+  const [displayDropDown, setDisplayDropDown] = useState(false);
 
-        <i className="fa-solid fa-angle-down"></i>
-      </div>
-    </section>
-  );
-};
+  const dispatch = useDispatch();
 
-export default Filter;
+  const handleDropDown = () => {
+    setDisplayDropDown(!displayDropDown)
+  };
+
+  useEffect(() => {
+    if (filter !== "") {
+      dispatch(setRegion(filter.toLowerCase()));
+    }
+
+    return () => {
+      dispatch(reset);
+    };
+  }, [dispatch, filter]);
+
+  
+}
