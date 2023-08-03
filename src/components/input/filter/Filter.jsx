@@ -26,5 +26,40 @@ const Filter = () => {
     };
   }, [dispatch, filter]);
 
-  
-}
+  return (
+    <section className="filter-container">
+      <div className="filter" onClick={handleDropDown}>
+        <input
+          readOnly
+          type="text"
+          placeholder="Filter by Region"
+          value={filter}
+          className="filter-input"
+        />
+
+        <i className="fa-solid fa-angle-down"></i>
+      </div>
+
+      {displayDropDown ? (
+        <div className="dropdown">
+          {regions.map((item, index) => {
+            return (
+              <div
+                key={index}
+                className="dropdown-item"
+                onClick={() => {
+                  setFilter(item);
+                  handleDropDown();
+                }}
+              >
+                {item}
+              </div>
+            );
+          })}
+        </div>
+      ) : null}
+    </section>
+  );
+};
+
+export default Filter;
