@@ -58,5 +58,16 @@ export const countriesSlice = createSlice({
                 state.countrySearched = action.payload;
                 state.success = true;
             })
+            .addCase(searchByCode.fulfilled, (state, action) => {
+                state.loading = false;
+                state.countrySearched = action.payload;
+                state.success = true;
+            })
+            .addCase(searchByCode.rejected, (state, action) => {
+                state.loading = false;
+                state.error = true;
+                state.message = action.payload;
+                state.countrySearched = [];
+            })
     }
 })
