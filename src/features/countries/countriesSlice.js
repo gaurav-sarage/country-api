@@ -69,5 +69,19 @@ export const countriesSlice = createSlice({
                 state.message = action.payload;
                 state.countrySearched = [];
             })
-    }
-})
+            .addCase(searchByRegion.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(searchByRegion.fulfilled, (state, action) => {
+                state.loading = false;
+                state.countriesData = action.payload;
+                state.success = true;
+            })
+            .addCase(searchByRegion.rejected, (state, action) => {
+                state.loading = false;
+                state.error = true;
+                state.message = action.payload;
+                state.countriesData = []
+            });
+    },
+});
