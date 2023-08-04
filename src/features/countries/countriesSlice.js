@@ -85,3 +85,7 @@ export const countriesSlice = createSlice({
             });
     },
 });
+
+export const { reset, setRegion, setSearchTerm } = countriesSlice.actions;
+
+export default countriesSlice.reducer;
