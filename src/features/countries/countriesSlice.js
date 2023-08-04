@@ -1,42 +1,62 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { showAllCountries } from "./countriesAction";
+import {
+    showAllCountries,
+    searchByCode,
+    searchByRegion
+} from './countriesAction';
+import { act } from "react-dom/test-utils";
 
 const initialState = {
     loading: false,
     countriesData: [],
-    countryData: [],
+    countrySearched: [],
+    region: '',
+    searchTerm: '',
     error: false,
     success: false,
     message: ''
-}
+};
 
 export const countriesSlice = createSlice({
-    name: "countries",
+    name: 'countries',
     initialState: initialState,
     reducers: {
         reset: (state) => {
             state.loading = false;
             state.success = false;
             state.error = false;
-            state.message = '';
+            state.message = '',
+            state.countrySearched = [],
+            state.region = ''
         },
-        extraReducers: (builder) => {
-            builder.addcase(showAllCountries.pending, (state) => {
-                state.loading = true;
-            })
-            .addcase(showAllCountries.fulfilled, (state, action) => {
+        setRegion: (state, action) => {
+            state.region = action.payload;
+        },
+
+        setSearchTerm: (state, action) => {
+            state.searchTerm = action.payload;
+        },
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(showAllCountries.fulfilled, (state, action) => {
                 state.loading = false;
                 state.countriesData = action.payload;
-                state.success = true
+                state.success = true;
             })
-            .addcase(showAllCountries.rejected, (state, action) => {
+            .addCase(showAllCountries.rejected, (state, action) => {
                 state.loading = false;
+                state.countriesData = [],
                 state.error = true;
                 state.message = action.payload;
-                state.countriesData = [];
-            })            
-        }
+            })
+            .addCase(searchByCode.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(searchByCode.fulfilled, (state, action) => {
+                state.loading = false;
+                state.countrySearched = action.payload;
+                state.success = true;
+            })
     }
 })
-
-export default countriesSlice.reducer;
