@@ -1,5 +1,5 @@
 import "./country.css";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 //redux
@@ -8,6 +8,7 @@ import {
   searchByRegion,
   showAllCountries,
 } from "../../features/countries/countriesAction";
+import { reset } from "../../features/countries/countriesSlice";
 
 const Country = () => {
   const { countriesData, loading, success, error, region, searchTerm } =
