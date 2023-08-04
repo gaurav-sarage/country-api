@@ -5,30 +5,30 @@
     justify-content: space-between;
     padding: 2rem 5rem;
     box-shadow: 5px 5px 5px #eae3e3;
-}
-
-.main-component.dark .header {
+  }
+  
+  .main-container.dark .header {
     background-color: var(--dark-blue-elements);
     box-shadow: 5px 5px 5px #0b0b0b;
     color: var(--color-white);
-}
-
-.theme-light {
+  }
+  
+  .theme-light {
     display: flex;
     align-items: center;
     cursor: pointer;
-}
-
-.theme-light i {
+  }
+  
+  .theme-light i {
     margin-right: 5px;
-}
-
-.theme-dark {
+  }
+  
+  .theme-dark {
     display: flex;
     align-items: center;
     cursor: pointer;
-}
-
-.theme-dark i {
+  }
+  
+  .theme-dark i {
     margin-right: 5px;
-}
+  }
