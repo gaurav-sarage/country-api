@@ -4,7 +4,6 @@ import {
     searchByCode,
     searchByRegion
 } from './countriesAction';
-import { act } from "react-dom/test-utils";
 
 const initialState = {
     loading: false,
